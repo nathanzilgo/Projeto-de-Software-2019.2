@@ -80,13 +80,19 @@ sua resposta.</p>
           <li>d. É o uso de múltiplas CPUs (computadores <em>multi-core</em>) que
               permite que o computador execute vários processos
               simultaneamente.</li>
-          <p class='answer'></p>
+          <p class='answer'>Falso. Processos não executam simultaneamente, mas sim com um tempo de respostas tão rápido provido pelo hardware moderno
+            que o usuário tem a impressão de paralelismo nas execuções. Além disso, não são necessárias várias CPUs para executar vários processos.
+          </p>
           <li>e. É graças ao conceito de <em>threads</em> que um sistema
               operacional pode executar o mesmo programa múltiplas vezes
               e simultaneamente.</li>
+          <p class='answer'>Falso. Um programa pode ser executado múltiplas vezes sem a utilização de threads. Threads possibilitam uma certa
+            funcionalidade ser executada 'ao mesmo tempo' que outra em um mesmo processo e utilizando o mesmo EEV.
+          </p>
           <li>f. <em>Threads</em> são usadas nos servidores para permitir que um
               mesmo processo atenda a múltiplas requisições
               simultaneamente.</li>
+          <p class='answer'>Verdadeiro. </p>
       </ul>
     
   </li>
@@ -96,14 +102,24 @@ sua resposta.</p>
 
 <ol>
   <li>O que são <em>streams</em>?</li>
+  <p class='answer'>Fluxos de dados sequencial.</p>
   <li>Quais os <em>streams</em> <em>default</em> de um processo?</li>
+  <p class='answer'>STDIN, STDOUT e STDERR. Todo processo Unix é, ao mesmo tempo, produtor e consumidor de streams.</p>
   <li>Para que devem ser usados <em>stdin</em>, <em>stdout</em> e <em>stdev</em>?</li>
+  <p class='answer'>Entrada padrão de dados, saída padrão de dados e saída padrão de erros.</p>
   <li>O que é redirecionamento?</li>
+  <p class='answer'>O mecanismo que SOs usam para conectar um processo a um arquivo.</p>
   <li>O que é um <em>pipeline</em>?</li>
+  <p class='answer'>Uma sequencia de conexões entre streams de processos via pipes pelo SO.</p>
   <li>Qual a diferença entre o <em>shell</em> e um <em>terminal</em>?</li>
+  <p class='answer'>Shell é o interpretador dos comandos que são escritos pelo usuário através de um terminal.
+    Terminal é uma interface de utilização textual que possibilita a comunicação com o Shell.
+  </p>
+  
   <li>Que comando pode ser usado para listar os processos em
 execução de forma que a lista resultante seja armazenada no
 arquivo <code class="highlighter-rouge">arq.txt</code>?</li>
+
   <li>Um processo pode estar conectado a múltiplos <em>streams</em>
 simultaneamente?</li>
   <li>Como o sistema operacional executa um <em>pipeline unix</em>? Cada
