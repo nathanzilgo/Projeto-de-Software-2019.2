@@ -136,21 +136,43 @@ seja usada como entrada do próximo programa? Explique.</li>
 
 <ol>
   <li>O que são <em>sockets</em>?</li>
+  <p class='answer'>São como pipelines porém para conexão entre máquinas.</p>
   <li>O que são conexões TCP e quais suas características
 relevantes?</li>
+  <p class='answer'>Protocolo de transmissão de dados. 
+    A versatilidade e robustez do TCP tornou-o adequado a redes globais, já que este verifica se os dados são enviados de forma correta, na sequência apropriada e sem erros, pela rede.
+    Ponto a ponto - uma conexão TCP é estabelecida entre dois pontos.
+    Entrega ordenada - A aplicação faz a entrega ao TCP de blocos de dados com um tamanho arbitrário num fluxo (ou stream) de dados.
+    Controle de fluxo.
+    Controle de congestionamento.
+  </p>
+
   <li>O que se quer dizer com “<em>conexões TCP são full-duplex</em>”?</li>
+  <p class='answer'>
+    É possível a transferência simultânea em ambas direções (cliente-servidor) durante toda a sessão. 
+    Apesar disso, em alguns momentos, o protocolo necessita que algum pacotes de dados cheguem para que se dê o envio de outros, o que limita as transmissões.
+  </p>
   <li>A comunicação por TCP é baseada em requisições e respostas?
 Explique.</li>
+  <p class='answer'>Acho que sim.</p>
   <li>O que é um <em>endereço TCP</em>? Como é formado?</li>
+  <p class='answer'>Endereço IP é um endereço virtual que representa a numeração do host.</p>
   <li>O que se quer dizer com “_conexões TCP transmitem bytes, não
 caracteres”?</li>
+  <p class='answer'>Porque TCP transmite os dados de forma binária.</p>
   <li>Usando o comando <code class="highlighter-rouge">nc</code>, indique como criar um servidor que
 “ouça” na porta 2626 da máquina local.</li>
+  <p class='answer'>
+    O comando <code class="highlighter-rouge">nc -l -p 2626</code>
+  </p>
   <li>Usando o comando <code class="highlighter-rouge">nc</code>, indique como criar um cliente para se
 conectar em um servidor na porta 2626 da máquina local.</li>
+  <p class='answer'><code class="highlighter-rouge">nc 2626 2626</code> </p>
+
   <li>Escreva um programa em python que a partir de um endereço dado
 pelo usuário, estabeleça uma conexão TCP e que envie uma
 sequência de 100 números aleatórios entre 0 e 200.</li>
+  <p class='answer'>Perai parcero.</p>
   <li>Reescreva o programa da atividade anterior, mudando a
 codificação utilizada. Se você os números foram enviados como
 <em>strings</em>, desta vez represente-os como <em>bytes</em> (observe que
