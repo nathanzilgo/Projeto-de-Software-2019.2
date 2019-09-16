@@ -10,10 +10,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DisciplinaService {
+
     private int atualID = 0;
     private HashMap<Integer, Disciplina> disciplinas = new HashMap<Integer, Disciplina>();
 
-    public Disciplina criaNovaDisciplina(DtoDisciplina disciplina) {
+    public Disciplina criaNovaDisciplina(Disciplina disciplina) {
         Disciplina novaDisci = new Disciplina(this.atualID, disciplina.getNome(), disciplina.getNota());
         disciplinas.put(this.atualID, novaDisci);
         this.atualID++;
@@ -34,13 +35,13 @@ public class DisciplinaService {
         return disciplinas.get(id);
     }
 
-    public void mudaNome(int id, Nome nome) {
-        disciplinas.get(id).setNome(nome.getNome());
+    public void mudaNome(int id, String nome) {
+        disciplinas.get(id).setNome(nome);
 
     }
 
-    public void mudaNota(int id, Nota nota) {
-        disciplinas.get(id).setNota(nota.getNota());
+    public void mudaNota(int id, int nota) {
+        disciplinas.get(id).setNota(nota);
     }
 
     public void deleteDisciplina(int id) {

@@ -15,6 +15,14 @@ public class Disciplina {
         this.likes = likes;
     }
 
+    public Disciplina(long id, String nome, double nota) {
+        this.id = id;
+        this.nome = nome;
+        this.nota = nota;
+        this.comentarios = "";
+        this.likes = 0;
+    }
+
     public long getId() {
         return id;
     }

@@ -1,13 +1,18 @@
 package psoft.lab2;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class Controller {
 
+    @Autowired
+    private DisciplinaService discService = new DisciplinaService();
+
     @PostMapping("/v1/auth/usuarios")
     public RequestMapping postUser(String email, String nome, String senha){
-
+        return new ResponseEntity<Disciplina>()
     }
 
     @GetMapping("/v1/auth/usuarios/{email}")
@@ -51,5 +56,13 @@ public class Controller {
     }
 
     @GetMapping("/v1/api/disciplinas/ranking/notas")
-    public RequestMapping
+    public RequestMapping rankingNotas(){
+
+    }
+
+    @GetMapping("/v1/api/disciplinas/ranking/likes")
+    public RequestMapping rankingLikes(){
+
+    }
+
 }
