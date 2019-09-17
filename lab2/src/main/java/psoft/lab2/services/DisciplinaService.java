@@ -1,12 +1,10 @@
-package psoft.lab2;
+package psoft.lab2.services;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import psoft.lab2.entities.ComparatorDisciplina;
+import psoft.lab2.entities.Disciplina;
 
 @Service
 public class DisciplinaService {
@@ -58,6 +56,7 @@ public class DisciplinaService {
     }
 
     public ArrayList<Disciplina> ranking() {
+
         ComparatorDisciplina comparator = new ComparatorDisciplina();
         ArrayList<Disciplina> disci = this.listarDisciplinas();
         disci.sort(comparator);

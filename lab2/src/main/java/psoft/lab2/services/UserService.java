@@ -1,6 +1,5 @@
-package psoft.lab2;
+package psoft.lab2.services;
 
-import psoft.lab2.User;
 import org.springframework.stereotype.Service;
 
 @Service

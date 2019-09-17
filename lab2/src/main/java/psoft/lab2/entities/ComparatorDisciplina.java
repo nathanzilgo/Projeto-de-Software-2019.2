@@ -1,4 +1,4 @@
-package psoft.lab2;
+package psoft.lab2.entities;
 
 import java.util.Comparator;
 

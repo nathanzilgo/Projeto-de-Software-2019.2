@@ -1,5 +1,9 @@
-package psoft.lab2;
+package psoft.lab2.entities;
 
+
+import org.hibernate.annotations.Entity;
+
+@Entity
 public class User {
     private String nome;
     private String email;

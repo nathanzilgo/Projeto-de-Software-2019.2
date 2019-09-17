@@ -1,8 +1,10 @@
-package psoft.lab2;
+package psoft.lab2.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import psoft.lab2.services.DisciplinaService;
+import psoft.lab2.entities.Disciplina;
 
 @RestController
 public class Controller {

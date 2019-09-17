@@ -1,5 +1,10 @@
-package psoft.lab2;
+package psoft.lab2.entities;
 
+import org.hibernate.annotations.Entity;
+
+import java.util.Objects;
+
+@Entity
 public class Disciplina {
     private long id;
     private String nome;
@@ -19,6 +24,13 @@ public class Disciplina {
         this.id = id;
         this.nome = nome;
         this.nota = nota;
+        this.comentarios = "";
+        this.likes = 0;
+    }
+
+    public Disciplina(String nome) {
+        this.id = this.hashCode();      //TODO pensar melhor no id
+        this.nome = nome;
         this.comentarios = "";
         this.likes = 0;
     }
@@ -61,5 +73,21 @@ public class Disciplina {
 
     public void setLikes(int likes) {
         this.likes = likes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Disciplina that = (Disciplina) o;
+        return Double.compare(that.nota, nota) == 0 &&
+                likes == that.likes &&
+                nome.equals(that.nome) &&
+                Objects.equals(comentarios, that.comentarios);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome, nota, comentarios, likes);
     }
 }
