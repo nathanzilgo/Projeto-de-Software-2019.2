@@ -1,12 +1,19 @@
 package psoft.lab2.entities;
 
 import org.hibernate.annotations.Entity;
+import org.springframework.data.annotation.Id;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.util.Objects;
 
 @Entity
 public class Disciplina {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
     private String nome;
     private double nota;
     private String comentarios;
