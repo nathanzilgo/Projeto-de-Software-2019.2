@@ -20,16 +20,7 @@ public class Disciplina {
     private String comentarios;
     private int likes;
 
-    public Disciplina(long id, String nome, double nota, String comentarios, int likes) {
-        this.id = id;
-        this.nome = nome;
-        this.nota = nota;
-        this.comentarios = comentarios;
-        this.likes = likes;
-    }
-
     public Disciplina(long id, String nome, double nota) {
-        this.id = id;
         this.nome = nome;
         this.nota = nota;
         this.comentarios = "";
@@ -37,7 +28,6 @@ public class Disciplina {
     }
 
     public Disciplina(@JsonProperty("nome") String nome) {
-        this.id = this.hashCode();      //TODO pensar melhor no id
         this.nome = nome;
         this.comentarios = "";
         this.likes = 0;
@@ -97,5 +87,9 @@ public class Disciplina {
     @Override
     public int hashCode() {
         return Objects.hash(nome, nota, comentarios, likes);
+    }
+
+    public void addComentario(String comment) {
+        this.comentarios += "\n" + comment;
     }
 }

@@ -3,12 +3,14 @@ package psoft.lab2.entities;
 
 import org.hibernate.annotations.Entity;
 
+import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
 public class User {
 
     private String nome;
+    @Id
     private String email;
     private String senha;
 

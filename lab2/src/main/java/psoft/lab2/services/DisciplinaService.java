@@ -3,12 +3,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import psoft.lab2.entities.ComparatorDisciplina;
+import psoft.lab2.entities.ComparatorDisciplinaLikes;
+import psoft.lab2.entities.ComparatorDisciplinaNota;
 import psoft.lab2.entities.Disciplina;
 import psoft.lab2.entities.DisciplinasRepository;
 
@@ -20,9 +22,8 @@ public class DisciplinaService {
     @Autowired
     private DisciplinasRepository<Disciplina, Long> disciplinaDAO;
 
-    public DisciplinaService(DisciplinasRepository disciplinaDAO){
-        this.disciplinaDAO = disciplinaDAO;
-    };
+    @Autowired
+    public DisciplinaService disciplinaService;
 
     private int atualID = 0;
 
@@ -33,7 +34,7 @@ public class DisciplinaService {
     public void initDisciplinas(){
         ObjectMapper mapper = new ObjectMapper();
         TypeReference<List<Disciplina>> reference = new TypeReference<List<Disciplina>>(){};
-        InputStream stream = ObjectMapper.class.getResourceAsStream("/json/disciplinas.json");
+        InputStream stream = ObjectMapper.class.getResourceAsStream("./json/disciplinas.json");
 
         try{
             List<Disciplina> disciplinas = mapper.readValue(stream, reference);
@@ -41,6 +42,7 @@ public class DisciplinaService {
             this.disciplinaDAO.saveAll(disciplinas);
             System.out.println("Disciplinas salvas no banco!");
         }
+
         catch(IOException excp){
             System.out.println("Não foi possível salvar as disciplinas: " + excp.getMessage());
         }
@@ -48,54 +50,104 @@ public class DisciplinaService {
 
     public Disciplina criaNovaDisciplina(Disciplina disciplina) {
         Disciplina novaDisci = new Disciplina(this.atualID, disciplina.getNome(), disciplina.getNota());
-        disciplinas.put(this.atualID, novaDisci);
         this.atualID++;
-        return this.disciplinas.get(atualID - 1);
+        this.disciplinaDAO.save(novaDisci);
+
+        return novaDisci;
     }
 
-    public ArrayList<Disciplina> listarDisciplinas() {
-        ArrayList<Disciplina> disci = new ArrayList<Disciplina>();
-        for (Integer item : disciplinas.keySet()) {
-            disci.add(disciplinas.get(item));
-        }
+    public List<Disciplina> listarDisciplinas() {
+
+        List<Disciplina> disci = new ArrayList<Disciplina>();
+
+        disci = disciplinaDAO.findAll();
 
         return disci;
+    }
+
+    public Optional<Disciplina> getDisciplina(Long id) {
+        return disciplinaDAO.findById(id);
+    }
+
+    public Disciplina mudaNome(Long id, String nome) {
+
+        if(disciplinaDAO.findById(id).isPresent()){
+
+            Disciplina nova = disciplinaDAO.findById(id).get();
+            nova.setNome(nome);
+            disciplinaDAO.save(nova);
+
+            return nova;
+        }
+        return null;
+    }
+
+    public Disciplina mudaNota(Long id, int nota) {
+
+        if(disciplinaDAO.findById(id).isPresent()){
+
+            Disciplina nova = disciplinaDAO.findById(id).get();
+            nova.setNota(nota);
+            disciplinaDAO.save(nova);
+            return nova;
+        }
+
+        return null;
+    }
+
+    public void deleteDisciplina(Long id) {
+        disciplinaDAO.deleteById(id);
 
     }
 
-    public Disciplina getDisciplina(int id) {
-        return disciplinas.get(id);
-    }
+    public boolean containID(Long id) {
 
-    public void mudaNome(int id, String nome) {
-        disciplinas.get(id).setNome(nome);
-
-    }
-
-    public void mudaNota(int id, int nota) {
-        disciplinas.get(id).setNota(nota);
-    }
-
-    public void deleteDisciplina(int id) {
-        disciplinas.remove(id);
-
-    }
-
-    public boolean containID(int id) {
-        if (disciplinas.containsKey(id)) {
+        if (disciplinaDAO.existsById(id)) {
             return true;
         } else {
             return false;
         }
     }
 
-    public ArrayList<Disciplina> ranking() {
+    public List<Disciplina> rankingNota() {
 
-        ComparatorDisciplina comparator = new ComparatorDisciplina();
-        ArrayList<Disciplina> disci = this.listarDisciplinas();
+        ComparatorDisciplinaNota comparator = new ComparatorDisciplinaNota();
+        List<Disciplina> disci = this.listarDisciplinas();
         disci.sort(comparator);
+
         return disci;
 
     }
 
+    public Disciplina putComment(long id, String comment) {
+
+        if(this.disciplinaDAO.findById(id).isPresent()){
+            Disciplina nova = disciplinaDAO.findById(id).get();
+            nova.addComentario(comment);
+            disciplinaDAO.save(nova);
+
+            return nova;
+        }
+        return null;
+    }
+
+    public List<Disciplina> rankingLikes() {
+        ComparatorDisciplinaLikes comparator = new ComparatorDisciplinaLikes();
+        List<Disciplina> ranking = this.listarDisciplinas();
+        ranking.sort(comparator);
+
+        return ranking;
+    }
+
+    public Disciplina incrementaLikes(long id) {
+
+        if(this.disciplinaDAO.findById(id).isPresent()){
+            Disciplina nova = disciplinaDAO.findById(id).get();
+            nova.setLikes(nova.getLikes() + 1);
+            disciplinaDAO.save(nova);
+
+            return nova;
+        }
+        return null;
+    }
 }

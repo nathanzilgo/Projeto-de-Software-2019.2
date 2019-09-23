@@ -2,7 +2,7 @@ package psoft.lab2.entities;
 
 import java.util.Comparator;
 
-public class ComparatorDisciplina implements Comparator<Disciplina>{
+public class ComparatorDisciplinaNota implements Comparator<Disciplina>{
 
     @Override
     public int compare(Disciplina a, Disciplina b){
