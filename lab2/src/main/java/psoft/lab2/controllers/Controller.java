@@ -10,7 +10,7 @@ import psoft.lab2.entities.Disciplina;
 public class Controller {
 
     @Autowired
-    private DisciplinaService discService = new DisciplinaService();
+    private DisciplinaService discService = new DisciplinaService(disciplinaDAO);
 
     @PostMapping("/v1/auth/usuarios")
     public RequestMapping postUser(String email, String nome, String senha){

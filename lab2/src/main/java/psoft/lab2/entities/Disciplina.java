@@ -1,5 +1,6 @@
 package psoft.lab2.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.Entity;
 import org.springframework.data.annotation.Id;
 
@@ -35,7 +36,7 @@ public class Disciplina {
         this.likes = 0;
     }
 
-    public Disciplina(String nome) {
+    public Disciplina(@JsonProperty("nome") String nome) {
         this.id = this.hashCode();      //TODO pensar melhor no id
         this.nome = nome;
         this.comentarios = "";
