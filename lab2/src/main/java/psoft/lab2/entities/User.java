@@ -9,9 +9,10 @@ import java.util.Objects;
 @Entity
 public class User {
 
-    private String nome;
     @Id
     private String email;
+
+    private String nome;
     private String senha;
 
     public User(String nome, String email, String senha) {

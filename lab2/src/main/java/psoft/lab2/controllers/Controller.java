@@ -26,13 +26,18 @@ public class Controller {
     }
 
     @GetMapping("/auth/usuarios/{email}")
-    public RequestMapping getUser(String email){
+    public ResponseEntity getUser(String email){
 
     }
 
     @PostMapping("/auth/login")
-    public RequestMapping verifyUser(String email, String senha){
-
+    public ResponseEntity verifyUser(String email, String senha){
+        try{
+            return new ResponseEntity(userService.authenticateLogin(email, senha), HttpStatus.OK);
+        }
+        catch(IllegalArgumentException excp){
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping("/auth/usuarios")

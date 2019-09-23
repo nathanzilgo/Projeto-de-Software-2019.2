@@ -18,4 +18,14 @@ public class UserService {
 
         return newUser;
     }
+
+    public User authenticateLogin(String email, String senha) {
+        if(userDAO.findById(email).isPresent()){
+
+            User u = (User) userDAO.findById(email).get();
+            if (u.getSenha().equals(senha)){
+                // TODO
+            }
+        }
+    }
 }

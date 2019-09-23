@@ -65,8 +65,12 @@ public class DisciplinaService {
         return disci;
     }
 
-    public Optional<Disciplina> getDisciplina(Long id) {
-        return disciplinaDAO.findById(id);
+    public Disciplina getDisciplina(Long id)
+    {
+        if(disciplinaDAO.findById(id).isPresent()){
+            return disciplinaDAO.findById(id).get();
+        }
+        throw new IllegalArgumentException("Id não encontrado!");
     }
 
     public Disciplina mudaNome(Long id, String nome) {
@@ -79,7 +83,7 @@ public class DisciplinaService {
 
             return nova;
         }
-        return null;
+        throw new IllegalArgumentException("Id não encontrado!");
     }
 
     public Disciplina mudaNota(Long id, int nota) {
@@ -92,12 +96,14 @@ public class DisciplinaService {
             return nova;
         }
 
-        return null;
+        throw new IllegalArgumentException("Id não encontrado!");
     }
 
     public void deleteDisciplina(Long id) {
-        disciplinaDAO.deleteById(id);
-
+        if(disciplinaDAO.findById(id).isPresent()){
+            disciplinaDAO.deleteById(id);
+        }
+        throw new IllegalArgumentException("Id não encontrado!");
     }
 
     public boolean containID(Long id) {
@@ -128,7 +134,7 @@ public class DisciplinaService {
 
             return nova;
         }
-        return null;
+        throw new IllegalArgumentException("Id não encontrado!");
     }
 
     public List<Disciplina> rankingLikes() {
@@ -148,6 +154,6 @@ public class DisciplinaService {
 
             return nova;
         }
-        return null;
+        throw new IllegalArgumentException("Id não encontrado!");
     }
 }
