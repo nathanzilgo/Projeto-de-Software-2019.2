@@ -47,7 +47,12 @@ public class Controller {
 
     @GetMapping("/api/disciplinas/{id}")
     public ResponseEntity getDisciplina(long id){
-        return new ResponseEntity(disciplinaService.getDisciplina(id), HttpStatus.OK);
+        try{
+            return new ResponseEntity(disciplinaService.getDisciplina(id), HttpStatus.OK);
+        }
+        catch(IllegalArgumentException excp){
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PutMapping("/api/disciplinas/{id}/likes")
