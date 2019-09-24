@@ -6,6 +6,8 @@ import psoft.lab2.entities.Disciplina;
 import psoft.lab2.entities.User;
 import psoft.lab2.entities.UserRepository;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
 
@@ -19,13 +21,11 @@ public class UserService {
         return newUser;
     }
 
-    public User authenticateLogin(String email, String senha) {
+    public Optional<User> getUser(String email){
         if(userDAO.findById(email).isPresent()){
-
-            User u = (User) userDAO.findById(email).get();
-            if (u.getSenha().equals(senha)){
-                // TODO
-            }
+            return userDAO.findById(email);
         }
+
+        throw new IllegalArgumentException("Usuario não encontrado!");
     }
 }
