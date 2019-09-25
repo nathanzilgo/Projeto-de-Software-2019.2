@@ -28,4 +28,17 @@ public class UserService {
 
         throw new IllegalArgumentException("Usuario não encontrado!");
     }
+
+    public boolean verifyPassword(String email, String senha) {
+
+        if(userDAO.findById(email).isPresent()){
+            User tmp = (User) userDAO.findById(email).get();
+            if(tmp.getSenha().equals(senha)){
+                return true;
+            }
+            return false;
+        }
+
+        throw new IllegalArgumentException("Email não encontrado!");
+    }
 }
