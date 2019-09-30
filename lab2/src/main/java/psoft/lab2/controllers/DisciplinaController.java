@@ -13,37 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class Controller {
+public class DisciplinaController {
 
     @Autowired
     private DisciplinaService disciplinaService;
-    @Autowired
-    private UserService userService;
 
-    @PostMapping("/auth/usuarios")
-    public ResponseEntity<User> postUser(String email, String nome, String senha){
-        return new ResponseEntity<User>(userService.newUser(email, nome, senha), HttpStatus.OK);
-    }
-
-    @GetMapping("/auth/usuarios/{email}")
-    public ResponseEntity getUser(String email){
-
-    }
-
-    @PostMapping("/auth/login")
-    public ResponseEntity verifyUser(String email, String senha){
-        try{
-            return new ResponseEntity(userService.authenticateLogin(email, senha), HttpStatus.OK);
-        }
-        catch(IllegalArgumentException excp){
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @DeleteMapping("/auth/usuarios")
-    public ResponseEntity deleteUser(){
-
-    }
 
     @GetMapping("/api/disciplinas")
     public ResponseEntity<List<Disciplina>> getDisciplinas(){

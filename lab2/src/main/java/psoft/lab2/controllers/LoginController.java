@@ -27,7 +27,7 @@ class LoginResponse {
 @RequestMapping("/auth")
 public class LoginController {
 
-    private final String TOKEN_KEY = "login";
+    private final String TOKEN_KEY = "thyago";
 
     @Autowired
     private UserService userService;
@@ -41,9 +41,18 @@ public class LoginController {
             throw new ServletException("Senha invalida!");
         }
 
-        String token = Jwts.builder().setSubject(authUsuario.get().getEmail()).signWith(SignatureAlgorithm.HS512, TOKEN_KEY)
-                .setExpiration(new Date(System.currentTimeMillis() + 1 * 60 * 1000)).compact();
+        if(userService.verifyPassword(user.getEmail(), user.getSenha())){
+            String token = geraToken(authUsuario.get().getEmail());
 
-        return new LoginResponse(token);
+            return new LoginResponse(token);
+        }
+
+        throw new ServletException("Senha invalida!");
+    }
+
+    public String geraToken(String email) {
+        return Jwts.builder().setSubject(email)
+                .signWith(SignatureAlgorithm.HS512, TOKEN_KEY)
+                .setExpiration(new Date(System.currentTimeMillis() + 1 * 60 * 1000)).compact();
     }
 }
