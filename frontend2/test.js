@@ -1,23 +1,22 @@
 function create_pessoa(nome) {
-    let pessoa = {}; // Criação do objeto vazio
-    pessoa.nome = nome; // Adiciona o atributo nome
-    pessoa.fale = function () { // Adiciona a função fale
-        return "oi meu confadre eu sou " + pessoa.nome
+    return {
+        nome: nome,
+        fale: function () {
+            return "oi, meu confadre, eu sou " + nome
+        }
     };
-
-    return pessoa;
 }
 
 function create_turma(disciplina, vagas) {
     let turma = {};
-    turma.alunos = [];
-    turma.vagas = vagas;
+    turma.alunosList = [];
+    turma.vagasQuant = vagas;
     turma.disciplina = disciplina;
 
     turma.matricule = function (aluno) {
-        if (this.vagas > 0) {
-            this.alunos.push(aluno);
-            this.vagas--;
+        if (this.vagasQuant > 0) {
+            this.alunosList.push(aluno);
+            this.vagasQuant -= 1;
 
             return true;
         }
@@ -25,18 +24,28 @@ function create_turma(disciplina, vagas) {
     }
 
     turma.alunos = function () {
-        return this.alunos;
+        return this.alunosList;
     }
 
     turma.vagas = function () {
-        return this.vagas;
+        return this.vagasQuant;
     }
+
+    return turma;
 }
 
-/**
- * p = create_pessoa('Albert Einstein');
-    console.log(p.fale());
- */
 
-t1 = create_turma('psoft', 30);
-t2 = create_turma('bd', 10);
+var p = create_pessoa('Albert Einstein');
+console.log(p.fale());
+
+
+var t1 = create_turma('psoft', 30);
+var t2 = create_turma('bd', 10);
+
+console.log(t1.vagas());
+
+for (var i = 0; i < 31; i++) {
+    console.log(t1.matricule('kakau'));
+}
+
+console.log(t1.vagas());
