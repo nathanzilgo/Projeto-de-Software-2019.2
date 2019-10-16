@@ -1,0 +1,22 @@
+{
+  "name": "sistema_academico",
+  "version": "1.0.0",
+  "description": "Lab 3 psoft",
+  "main": "index.js",
+  "scripts": {
+    "test": "test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nathanzilgo/Projeto-de-Software-2019.2.git"
+  },
+  "author": "Nathan Fernandes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nathanzilgo/Projeto-de-Software-2019.2/issues"
+  },
+  "homepage": "https://github.com/nathanzilgo/Projeto-de-Software-2019.2#readme",
+  "dependencies": {
+    "mocha": "^6.2.1"
+  }
+}
