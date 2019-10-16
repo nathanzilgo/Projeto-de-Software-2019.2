@@ -5,8 +5,21 @@ function disciplina(id, nome, creditos, pre_req) {
         creditos: creditos,
         pre_requisitos: pre_req,
     }
-    d.getNome() = () {
-        return d.nome;
+
+    d.get_nome = () => {
+        d.nome;
+    }
+
+    d.id = () => {
+        d.id;
+    }
+
+    d.creditos = () => {
+        d.creditos;
+    }
+
+    d.set_nome = function (newNome) {
+        d.nome = newNome;
     }
 
 }
