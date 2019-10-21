@@ -76,13 +76,39 @@ function professor(matricula, nome, email, cpf, foto) {
             t.professor = this;
         },
 
-
         turmas(semestre) {
-            //TODO
+            return this.turmas.filter(t.periodo == semestre).disciplina;
         }
     }
 
     return p;
+}
+
+function estudante(matricula, nome, email, cpf, url) {
+    let privateMatricula = matricula;
+
+    let e = {
+        nome: nome,
+        email: email,
+        cpf: cpf,
+        foto: foto,
+        turmas: [],
+
+        get_Matricula: () => {
+            return privateMatricula;
+        },
+
+        matricula: function (turma) {
+            turma.matriculaEstudantes(this);
+            this.turmas.push(turma);
+        },
+
+        turmas: function (semestre) {
+            return this.turmas.filter(t.periodo == semestre).disciplina;
+        }
+    }
+
+    return e;
 }
 
 exports.disciplina = disciplina;
