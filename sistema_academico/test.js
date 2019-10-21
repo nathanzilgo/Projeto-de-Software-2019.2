@@ -1,5 +1,7 @@
 let assert = require('assert');
 let disciplina = require('./scoord').disciplina;
+let estudante = require('./scoord').estudante;
+let professor = require('./scoord').professor;
 
 describe('factory Disciplina', function () {
   let d0;
@@ -39,3 +41,41 @@ describe('factory Disciplina', function () {
   });
 
 });
+
+describe('factory Estudante', function(){
+  let e0;
+
+  before(async () => {
+    e0 = estudante('116110522', 'dalton serey', 'dalton@dsc.ufcg.edu.br', '00000000000', 'https://google.com');
+  });
+
+  it('Deve criar estudantes distintos a cada invocação', function(){
+    e1 = estudante('116110522', 'dalton serey', 'dalton@dsc.ufcg.edu.br', '00000000000', 'https://google.com');
+    e2 = estudante('116110522', 'dalton serey', 'dalton@dsc.ufcg.edu.br', '00000000000', 'https://google.com');
+
+    assert.notEqual(e0,e1);
+    assert.notEqual(e0,e2);
+    assert.notEqual(e2,e1);
+  });
+
+  it('Deve reter os dados de inicialização', function() {
+    assert.equal('116110522', e0.get_matricula());
+    assert.equal('dalton serey', e0.nome);
+    assert.equal('dalton@dsc.ufcg.edu.br', e0.email);
+    assert.equal('00000000000', e0.cpf);
+    assert.equal('https://google.com', e0.url);
+  });
+
+  it('Deve permitir mudança de nome', function() {
+    e0.set_nome('joao');
+    assert.equal('joao', e0.nome);
+  });
+
+  it('Não deve permitir mudança de matricula por set_matricula', function(){
+    assert.throws(function(){
+      e0.set_matricula('outra')
+    }, TypeError);
+    assert.equal('116110522', e0.get_matricula);
+  })
+
+})

@@ -1,0 +1,23 @@
+{
+  "name": "sistema_disciplinas",
+  "version": "1.0.0",
+  "description": "Sistema de disciplinas (lab3 psoft frontend)",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^6.2.1"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nathanzilgo/Projeto-de-Software-2019.2.git"
+  },
+  "author": "Nathan Fernandes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nathanzilgo/Projeto-de-Software-2019.2/issues"
+  },
+  "homepage": "https://github.com/nathanzilgo/Projeto-de-Software-2019.2#readme"
+}

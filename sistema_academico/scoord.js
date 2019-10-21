@@ -94,7 +94,7 @@ function estudante(matricula, nome, email, cpf, url) {
         foto: foto,
         turmas: [],
 
-        get_Matricula: () => {
+        get_matricula: () => {
             return privateMatricula;
         },
 
@@ -102,7 +102,11 @@ function estudante(matricula, nome, email, cpf, url) {
             turma.matriculaEstudantes(this);
             this.turmas.push(turma);
         },
-
+        
+        set_nome: function(novo){
+            this.nome = novo;
+        },
+        
         turmas: function (semestre) {
             return this.turmas.filter(t.periodo == semestre).disciplina;
         }
@@ -112,3 +116,6 @@ function estudante(matricula, nome, email, cpf, url) {
 }
 
 exports.disciplina = disciplina;
+exports.turma = turma;
+exports.professor = professor;
+exports.estudante = estudante;
