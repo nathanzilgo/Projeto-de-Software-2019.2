@@ -76,8 +76,9 @@ function professor(matricula, nome, email, cpf, foto) {
             t.professor = this;
         },
 
-        turmas(semestre) {
 
+        turmas(semestre) {
+            //TODO
         }
     }
 
