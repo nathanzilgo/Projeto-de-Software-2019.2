@@ -77,7 +77,8 @@ function professor(matricula, nome, email, cpf, foto) {
         },
 
         turmas(semestre) {
-            return this.turmas.filter(t.periodo == semestre).disciplina;
+            
+            return this.turmas.filter( (turma) => {turma.periodo === semestre} ).map(turma => turma.disciplina);
         }
     }
 
@@ -106,9 +107,9 @@ function estudante(matricula, nome, email, cpf, url) {
         set_nome: function(novo){
             this.nome = novo;
         },
-        
+
         turmas: function (semestre) {
-            return this.turmas.filter(t.periodo == semestre).disciplina;
+            return this.turmas.filter( (turma) => {turma.periodo === semestre} ).map(turma => turma.disciplina);
         }
     }
 

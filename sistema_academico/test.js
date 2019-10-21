@@ -79,3 +79,13 @@ describe('factory Estudante', function(){
   })
 
 })
+
+describe('factory Professor', function(){
+  let p0;
+
+  before(async () => {
+    p0 = professor('3333', 'dalton', 'dalton@dsc.ufcg.edu.br', '8888888888', 'https://youtube.com');
+  });
+
+  it('')
+})
